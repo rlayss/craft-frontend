@@ -52,7 +52,7 @@ function ProductPage() {
   }, [rows]);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", height: 600 }}>
       <h1>Product</h1>
       <Button
         onClick={function () {
@@ -65,11 +65,7 @@ function ProductPage() {
         rows={rows}
         columns={columns}
         initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 10,
-            },
-          },
+          pagination: { paginationModel: { pageSize: 8 } },
         }}
       />
     </Box>
