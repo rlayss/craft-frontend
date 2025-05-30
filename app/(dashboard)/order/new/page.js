@@ -1,4 +1,5 @@
 "use client";
+import { RepeatOneSharp } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -11,17 +12,20 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { useState } from "react";
+import axios from "axios";
+
+import { useEffect, useState } from "react";
 
 export default function NewOrderPage() {
   const [dueDate, setDueDate] = useState();
   const [items, setItems] = useState([{}]);
 
   const addOrderHandle = function () {
-    console.log(dueDate);
-    console.log(items);
+    axios
+      .post("http://127.0.0.1:8080/api/order/new", { dueDate, items })
+      .then((response) => {
+        window.alert(response.data.message);
+      });
   };
 
   return (
@@ -81,7 +85,7 @@ export default function NewOrderPage() {
                   />
                 </TableCell>
                 <TableCell>
-                  <Button>삭제</Button>
+                  <Button onClick={() => {}}>삭제</Button>
                 </TableCell>
               </TableRow>
             ))}

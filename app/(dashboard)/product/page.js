@@ -2,6 +2,7 @@
 
 import { Box, Button, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function ProductPage() {
@@ -36,15 +37,10 @@ function ProductPage() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/api/product", {
-      method: "GET",
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setRows(data.products);
-      });
+    axios.get("http://127.0.0.1:8080/api/product").then((response) => {
+      console.log(response.data);
+      setRows(response.data.products);
+    });
   }, []);
 
   useEffect(() => {
